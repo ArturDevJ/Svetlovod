@@ -4,10 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.dto.request.CityRequest;
 import org.example.dto.response.CityResponse;
 import org.example.service.CityService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/city")
@@ -18,5 +15,10 @@ public class CitiesController {
     @PostMapping("/save")
     public CityResponse save(@RequestBody CityRequest cityRequest) {
         return cityService.saveCity(cityRequest);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void delete(@PathVariable(value = "id") Long id) {
+        cityService.deleteCity(id);
     }
 }

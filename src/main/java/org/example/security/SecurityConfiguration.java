@@ -27,8 +27,9 @@ public class SecurityConfiguration {
     public static final String[] PERMIT_ALL = {
             "/api/auth/sign-up",
             "/api/auth/sign-in",
-            "/api/auth/sign-out",
-            "/api/city/save"
+            "/api/city/delete/*",
+            "/api/city/save",
+            "/error"
     };
 
     @Bean
