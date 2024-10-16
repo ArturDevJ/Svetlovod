@@ -21,16 +21,12 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @RequiredArgsConstructor
 public class SecurityConfiguration {
-    private UserEntityRepository userEntityRepository;
+    private final UserEntityRepository userEntityRepository;
     private final UserDetailsService userDetailsService;
 
     public static final String[] PERMIT_ALL = {
             "/api/auth/sign-up",
             "/api/auth/sign-in",
-            "/api/city/delete/*",
-            "/api/city/save",
-            "/api/city/getAll",
-            "/api/city/get/*",
             "/error"
     };
 

@@ -35,4 +35,9 @@ public class CitiesController {
     public CityResponse get(@PathVariable(value = "id") Long id) {
         return cityService.getCity(id);
     }
+
+    @PostMapping("/update/{id}")
+    public CityResponse update(@RequestBody CityRequest cityRequest,@PathVariable(value = "id") Long id) {
+        return cityService.updateCity(cityRequest, id);
+    }
 }

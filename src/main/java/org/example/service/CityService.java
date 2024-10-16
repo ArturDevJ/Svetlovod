@@ -55,4 +55,15 @@ public class CityService {
         }
         return response;
     }
+
+    public CityResponse updateCity(CityRequest cityRequest, Long id) {
+        CityEntity cityEntity = new CityEntity();
+        cityEntity.setId(id);
+        cityEntity.setName(cityRequest.getName());
+        cityEntity = cityRepository.save(cityEntity);
+        CityResponse cityResponse = new CityResponse();
+        cityResponse.setId(cityEntity.getId());
+        cityResponse.setName(cityEntity.getName());
+        return cityResponse;
+    }
 }

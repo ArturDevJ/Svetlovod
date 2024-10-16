@@ -40,11 +40,11 @@ public class AuthService {
 
     public TokenResponse signIn(SignInRequest request) {
         Optional<UserEntity> optionalUser = userEntityRepository.findByEmail(request.getEmail());
-        if (optionalUser.isPresent()) {
+        if (optionalUser.isEmpty()) {
             throw new SvetlovodException("WRONG_EMAIL", "ВВЕДЕН НЕВЕРНЫЙ EMAIL", HttpStatus.BAD_REQUEST);
         }
         UserEntity userEntity = optionalUser.get();
-        if (!passwordEncoder.matches(request.getPassword(), userEntity.getPassword())) {
+        if (passwordEncoder.matches(request.getPassword(), userEntity.getPassword())) {
             String token = UUID.randomUUID().toString();
             userEntity.setToken(token);
             userEntityRepository.save(userEntity);
