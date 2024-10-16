@@ -8,6 +8,10 @@ import org.example.repository.CityRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class CityService {
@@ -28,5 +32,27 @@ public class CityService {
                 new SvetlovodException("EMPTY_CITY", "НЕТ ГОРОДА", HttpStatus.NOT_FOUND));
         CityEntity city = cityRepository.getReferenceById(id);
         cityRepository.delete(city);
+    }
+
+    public CityResponse getCity(Long id) {
+        Optional<CityEntity> optionalCityEntity = cityRepository.findById(id);
+        if (optionalCityEntity.isEmpty()) {
+            throw new SvetlovodException("EMPTY_CITY", "НЕТ ГОРОДА", HttpStatus.NOT_FOUND);
+        }
+        CityEntity city = optionalCityEntity.get();
+        CityResponse cityResponse = new CityResponse();
+        cityResponse.setId(city.getId());
+        cityResponse.setName(city.getName());
+        return cityResponse;
+    }
+
+    public List<CityResponse> getAll() {
+        List<CityResponse> response = new ArrayList<>();
+        List<CityEntity> list = cityRepository.findAll();
+        for (int i = 0; i < list.size(); i++) {
+            CityResponse cityResponse = new CityResponse();
+            response.add(cityResponse);
+        }
+        return response;
     }
 }

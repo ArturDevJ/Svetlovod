@@ -29,6 +29,8 @@ public class SecurityConfiguration {
             "/api/auth/sign-in",
             "/api/city/delete/*",
             "/api/city/save",
+            "/api/city/getAll",
+            "/api/city/get/*",
             "/error"
     };
 
