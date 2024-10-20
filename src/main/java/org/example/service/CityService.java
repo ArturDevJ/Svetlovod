@@ -49,8 +49,10 @@ public class CityService {
     public List<CityResponse> getAll() {
         List<CityResponse> response = new ArrayList<>();
         List<CityEntity> list = cityRepository.findAll();
-        for (int i = 0; i < list.size(); i++) {
+        for (CityEntity cityEntity : list) {
             CityResponse cityResponse = new CityResponse();
+            cityResponse.setId(cityEntity.getId());
+            cityResponse.setName(cityEntity.getName());
             response.add(cityResponse);
         }
         return response;

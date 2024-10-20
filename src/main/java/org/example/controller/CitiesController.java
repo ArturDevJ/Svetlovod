@@ -16,27 +16,27 @@ public class CitiesController {
     private final CityService cityService;
     private final CityRepository cityRepository;
 
-    @PostMapping("/save")
+    @PostMapping
     public CityResponse save(@RequestBody CityRequest cityRequest) {
         return cityService.saveCity(cityRequest);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable(value = "id") Long id) {
         cityService.deleteCity(id);
     }
 
-    @GetMapping("/getAll")
+    @GetMapping
     public List<CityResponse> getAll() {
         return cityService.getAll();
     }
 
-    @GetMapping("/get/{id}")
+    @GetMapping("/{id}")
     public CityResponse get(@PathVariable(value = "id") Long id) {
         return cityService.getCity(id);
     }
 
-    @PostMapping("/update/{id}")
+    @PutMapping("/{id}")
     public CityResponse update(@RequestBody CityRequest cityRequest,@PathVariable(value = "id") Long id) {
         return cityService.updateCity(cityRequest, id);
     }
